@@ -45,14 +45,14 @@ var (
 )
 
 const (
-	consumerHostName               = "tester"
+	consumerHostName               = "172.27.103.228:8080" // hostname:port
 	brokerBaseURL                  = "http://webhook-broker-dev-cmp-services-01.k8s-dev.newscred.com"
 	token                          = "someRandomToken"
 	tokenFormParamKey              = "token"
 	callbackURLFormParamKey        = "callbackUrl"
-	channelID                      = "integration-test-channel"
-	producerID                     = "integration-test-producer"
-	consumerIDPrefix               = "integration-test-consumer-"
+	channelID                      = "integration-test-channel-ashiqur"
+	producerID                     = "integration-test-producer-ashiqur"
+	consumerIDPrefix               = "integration-test-consumer-ashiqur-"
 	formDataContentTypeHeaderValue = "application/x-www-form-urlencoded"
 	headerContentType              = "Content-Type"
 	headerUnmodifiedSince          = "If-Unmodified-Since"
@@ -68,12 +68,13 @@ const (
 )
 
 func findPort() int {
-	for port := 61500; port < 63000; port++ {
-		if checkPort(port) == nil {
-			return port
-		}
-	}
-	return 0
+	// for port := 61500; port < 63000; port++ {
+	// 	if checkPort(port) == nil {
+	// 		return port
+	// 	}
+	// }
+	// return 0
+	return 8080
 }
 
 func checkPort(port int) (err error) {
@@ -417,7 +418,7 @@ func testBasicObjectCreation(portString string) {
 		log.Println("error updating channel", err)
 		return
 	}
-	baseURLString := "http://" + consumerHostName + portString
+	baseURLString := "http://" + consumerHostName // + portString
 	count = createConsumers(baseURLString)
 	log.Println("number of consumers created", count)
 	if count == 0 {
