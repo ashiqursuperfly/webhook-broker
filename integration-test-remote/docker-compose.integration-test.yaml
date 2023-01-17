@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+
+  tester:
+    build: .
+    container_name: tester
+    command: ["make", "run"]
+#     networks:
+#       brokeritest:
+#         aliases:
+#           - "tester"
+
+# networks:
+#   brokeritest:
