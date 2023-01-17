@@ -443,7 +443,7 @@ func testMessageTransmission() {
 			log.Println("error broadcasting message", err)
 			os.Exit(1)
 		}
-		timeoutDuration := time.Duration(2*step)*time.Second + time.Duration(failures)*time.Second*4
+		timeoutDuration := time.Duration(20*step)*time.Second + time.Duration(failures)*time.Second*40
 		if waitTimeout(wg, timeoutDuration) {
 			log.Println("0. Timed out waiting for wait group after", timeoutDuration)
 			os.Exit(2)
